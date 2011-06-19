@@ -1,0 +1,183 @@
+/*
+
+This library is distributed under the terms of the GNU Lesser General Public
+License, Version 3. A copy of the license should have been included with the
+distribution. If it was not, the full text of the license, and the General
+Public License upon which it is based, are available at:
+
+http://www.gnu.org/licenses/lgpl-3.0.txt
+http://www.gnu.org/licenses/gpl-3.0.txt
+
+Please report violations to sickbrew@sickbrew.com.
+
+*/
+
+ul.sickbrew_sealed {display:none;}
+
+div.sbbFail {
+    clear:left;
+    margin:10px 0;
+    font-weight:bold;
+}
+
+table.SickBrewBuilder {
+    clear:left;
+    border-spacing:0;
+    margin-top:10px;
+}
+table.SickBrewBuilder a:hover {
+    text-decoration:none;
+}
+table.SickBrewBuilder td {
+    vertical-align:top;
+    background-color:#fff;
+    width:68px;
+    border:1px solid #eee;
+}
+table.SickBrewBuilder td.hover {
+    background-color:#efe;
+}
+table.SickBrewBuilder tr.sbbHeader td {
+    padding:2px 5px;
+    border-width:0;
+    background-color:#eee;
+}
+table.SickBrewBuilder span.sbbHeaderCount {
+    margin:0 30px;
+}
+table.SickBrewBuilder a.sbbHeaderRBtn,
+table.SickBrewBuilder a.sbbHeaderLandBtn,
+table.SickBrewBuilder a.sbbHeaderListBtn {
+    padding:0 4px;
+    margin-left:10px;
+    color:#555;
+    border:1px solid #aaa;
+    border-radius:4px;
+    cursor:pointer;
+}
+table.SickBrewBuilder a.sbbHeaderRBtn {
+    float:right;
+}
+table.SickBrewBuilder a.sbbHeaderRBtn:hover,
+table.SickBrewBuilder a.sbbHeaderLandBtn:hover,
+table.SickBrewBuilder a.sbbHeaderListBtn:hover {
+    border-color:#000;
+}
+table.SickBrewBuilder tr.sbbBin td,
+table.SickBrewBuilder tr.sbbGrid td {
+    padding:5px 5px 15px 5px;
+}
+table.SickBrewBuilder a.sbbCard,
+table.SickBrewBuilder a.sbbLand {
+    margin:0;
+    position:relative;
+    float:left;
+    border:2px solid #000;
+    border-radius:3px;
+}
+table.SickBrewBuilder a.sbbCard img,
+table.SickBrewBuilder a.sbbLand img {
+    position:absolute;
+}
+table.SickBrewBuilder tr.sbbBin td {
+    padding-right:40px;
+}
+table.SickBrewBuilder tr.sbbBin a.sbbCard {
+    width:40px;
+    height:57px;
+    margin-right:-33px;
+}
+table.SickBrewBuilder tr.sbbBin a.sbbCard img {
+    width:46px;
+    height:63px;
+    top:-3px;
+    left:-3px;
+    clip:rect(3px,43px,60px,3px);
+}
+table.SickBrewBuilder tr.sbbGrid a.sbbCard,
+table.SickBrewBuilder div.sbbLands a.sbbLand {
+    width:64px;
+    height:90px;
+}
+table.SickBrewBuilder tr.sbbGrid a.sbbCard {
+    margin-top:-67px;
+}
+table.SickBrewBuilder tr.sbbGrid a.sbbCard img,
+table.SickBrewBuilder div.sbbLands a.sbbLand img {
+    width:72px;
+    height:98px;
+    top:-4px;
+    left:-4px;
+    clip:rect(4px,68px,94px,4px);
+}
+table.SickBrewBuilder tr.sbbGrid a.sbbCard:first-child {
+    margin-top:0;
+}
+table.SickBrewBuilder a.sbbCard.selected {
+    border-color:#0a0;
+}
+table.SickBrewBuilder a.sbbCard.hover {
+    border-color:#a00;
+}
+table.SickBrewBuilder a.sbbCard.hover.selected {
+    border-color:#aa0;
+}
+table.SickBrewBuilder tr.sbbHeader.sbbShowDecklist div.sbbLands,
+table.SickBrewBuilder tr.sbbHeader pre {
+    display:none;
+}
+table.SickBrewBuilder tr.sbbHeader.sbbShowDecklist pre {
+    display:block;
+}
+table.SickBrewBuilder tr.sbbHeader.sbbShowLands a.sbbHeaderLandBtn,
+table.SickBrewBuilder tr.sbbHeader.sbbShowDecklist a.sbbHeaderListBtn {
+    background-color:#aaa;
+    border-color:#000;
+    color:#000;
+}
+table.SickBrewBuilder div.sbbLands {
+    display:none;
+    padding:5px 90px;
+}
+table.SickBrewBuilder div.sbbLands a.sbbLand {
+    margin:3px 3px;
+}
+table.SickBrewBuilder div.sbbLands a.sbbLand div {
+    display:none;
+    position:absolute;
+    width:64px;
+    color:#fff;
+    background-color:rgba(0,0,0,0.5);
+}
+table.SickBrewBuilder div.sbbLands a.sbbLand:hover div {
+    display:block;
+}
+table.SickBrewBuilder div.sbbLands a.sbbLand div a {
+    display:block;
+    height:18px;
+    text-align:center;
+    font-weight:bold;
+}
+table.SickBrewBuilder div.sbbLands a.sbbLand div a:hover {
+    background-color:rgba(192,192,192,0.5);
+    cursor:default;
+}
+table.SickBrewBuilder tr.sbbHeader.sbbShowLands div.sbbLands {
+    display:block;
+}
+
+table.SickBrewBuilder tr.sbbCredit td {
+    border:none;
+    color:#ccc;
+    font-size:10px;
+    padding:0px 5px;
+    text-align:right;
+}
+table.SickBrewBuilder tr.sbbCredit td a {
+    color:#565;
+}
+
+img.sbbPreview {
+    display:none;
+    position:absolute;
+}
