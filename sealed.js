@@ -220,8 +220,6 @@ sickbrew.onCardsReady(function() {
         this.sections.deck = new Grid(this, 'Deck', true);
         this.preview = new Preview(this);
 
-        // ---------------------------------------------------------------
-        // This section is required for proper attribution. Do not modify.
         var tr = $(document.createElement('tr'));
         var td = $(document.createElement('td'));
         td.html('powered by <a href="http://sickbrew.com">sickbrew</a>')
@@ -229,7 +227,6 @@ sickbrew.onCardsReady(function() {
         tr.append(td)
           .addClass('sbbCredit');
         $(this.el).append(tr);
-        // ---------------------------------------------------------------
     };
     Builder.prototype.fail = function() {
         this.el = document.createElement('div');
