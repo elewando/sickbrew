@@ -1,5 +1,7 @@
 /*
 
+(c) 2011 Eric Lewandowski.
+
 This library is distributed under the terms of the GNU Lesser General Public
 License, Version 3. A copy of the license should have been included with the
 distribution. If it was not, the full text of the license, and the General
