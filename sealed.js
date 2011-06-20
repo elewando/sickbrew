@@ -22,7 +22,7 @@ sickbrew.css('sealed');
 
 sickbrew.onCardsReady(function() {
 
-    var STR_FAIL = 'This sealed deck widget depends on modern browser features, and yours does not meet the challenge. Please consider upgrading.';
+    var FAIL = 'This sealed deck widget depends on modern browser features, and yours does not meet the challenge. Please consider upgrading. Click <a>here</a> to see the card list.';
 
     function gathererImage(mvid) {
         return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' +
@@ -236,8 +236,12 @@ sickbrew.onCardsReady(function() {
     };
     Builder.prototype.fail = function() {
         this.el = document.createElement('div');
-        this.owner.after($(this.el).html(STR_FAIL)
+        this.owner.after($(this.el).html(FAIL)
                                    .attr('class', 'sbbFail'));
+        $(this.el).find('a').click((function() {
+            $(this.el).css('display', 'none');
+            this.owner.css('display', 'block');
+        }).bind(this));
         this.failed = true;
     };
     Builder.prototype.loadCards = function() {

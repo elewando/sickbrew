@@ -52,7 +52,7 @@ if (!Function.prototype.bind) {
 }
 
 // Everybody needs this.
-if (!HTMLElement.prototype.selectContent) {
+if (window.HTMLElement && !HTMLElement.prototype.selectContent) {
     HTMLElement.prototype.selectContent = function() {
         if (window.getSelection && window.document.createRange) {
             var sel = window.getSelection();

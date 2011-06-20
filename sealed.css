@@ -25,6 +25,10 @@ div.sbbFail {
     margin:10px 0;
     font-weight:bold;
 }
+div.sbbFail a {
+    color:#565;
+    cursor:pointer;
+}
 
 table.SickBrewBuilder {
     clear:left;
