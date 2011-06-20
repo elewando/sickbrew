@@ -22,7 +22,7 @@ sickbrew.css('sealed');
 
 sickbrew.onCardsReady(function() {
 
-    var FAIL = 'This sealed deck widget depends on modern browser features, and yours does not meet the challenge. Please consider upgrading. Click <a>here</a> to see the card list.';
+    var FAIL = 'This sealed deck widget depends on modern browser features, and yours does not meet the challenge. Please consider upgrading. Click <a href="#">here</a> to see the card list.';
 
     function gathererImage(mvid) {
         return 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' +
