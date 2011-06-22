@@ -1,0 +1,87 @@
+
+sickbrew - a JavaScript library for rich Magic: the Gathering content
+Copyright (C) 2011 Eric Lewandowski
+
+---------------------------------------------------------------------------
+Overview
+---------------------------------------------------------------------------
+
+sickbrew is a JavaScript library that adds fancy and useful things to web
+pages, particulary Magic: the Gathering strategy articles. It works by
+looking for well-formatted "trigger" HTML in the source and amending the
+document with its magic. For examples, see http://sickbrew.com/demo.
+
+---------------------------------------------------------------------------
+Installation
+---------------------------------------------------------------------------
+
+To use the sickbrew library on your site, download the source or clone the
+repository from github - https://github.com/elewando/sickbrew. Add a script
+tag to the relevant pages:
+
+<script type="text/javascript" src="/sickbrew/sickbrew.js"></script>
+
+(Use the appropriate path.) sickbrew.js is designed to be light enough for
+use in a global header; it only loads the bulk of the script if trigger
+elements are present.
+
+You may also include a version number in the src attribute:
+
+<script type="text/javascript" src="/sickbrew/sickbrew-v5.js"></script>
+
+If used in conjunction with a rewrite rule on your web server, you can
+circumvent browser caching and change the version number, forcing the
+library to download new source whenever you update the code. An appropriate
+rule for Apache would be:
+
+RewriteRule ^(.*)(-v\d+)\.(j|cs)s$ $1.$3s
+
+Note that this is not a real version number; it simply tricks the browser
+into ignoring its cached copy of any files.
+
+---------------------------------------------------------------------------
+Card Data
+---------------------------------------------------------------------------
+
+To make card data available, include a hidden input:
+
+<input type="hidden" name="sickbrew_cards" value="som,mbs,nph" />
+
+This example will make Scars of Mirrodin, Mirrodin Beseiged, and New
+Phyrexia card data available in window.sickbrew.cards. Most other sickbrew
+features will depend on this data.
+
+---------------------------------------------------------------------------
+Sealed Deck
+---------------------------------------------------------------------------
+
+The Sealed Deck feature appends a deck builder to the page when it finds an
+appropriate card pool. Card pool html looks like this:
+
+<ul class="sickbrew_sealed">
+<li>2 Apostle's Blessing</li>
+<li>Exclusion Ritual</li>
+etc
+</ul>
+
+The number of cards is optional; one is assumed if no count is present.
+Card names that are present in the loaded card data will appear in the deck
+builder; missing card names will be ignored. Once the builder is populated,
+the user can manipulate cards, add basic lands, and generate a decklist for
+use in article feedback.
+
+---------------------------------------------------------------------------
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
