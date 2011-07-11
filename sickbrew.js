@@ -74,9 +74,12 @@ if (window.HTMLElement && !HTMLElement.prototype.selectContent) {
     // Possible scripts to load are defined by the 'triggers' variable in the
     // init method; each script can be triggered by the presence of a particular
     // element selector. (For example, ul.sickbrew_sealed will trigger loading
-    // sealed.js.) Card data is loaded by the presence of hidden inputs like:
+    // sealed.js.) Card data is loaded by "data-sets" attributes on trigger
+    // elements and/or the presence of hidden inputs:
     //
-    //   <input type="hidden" name="sickbrew_cards" value="som,mbs" />
+    //   <ul class="sickbrew_sealed" data-sets="m11">...</ul> 
+    //
+    //   <input type="hidden" name="sickbrew_cards" value="som,mbs,nph" />
     //
     // The above will load "cards/som.js" and "cards/mbs.js" which should, in
     // most cases, only contain a call to sickbrew.addCards.
@@ -101,38 +104,55 @@ if (window.HTMLElement && !HTMLElement.prototype.selectContent) {
                     this.jsv = m[2] || '';
                 }
             }).bind(this));
-            // For each possible module, load it if a trigger element is present.
+            // For each possible module, load it if a trigger element is
+            // present. For each trigger element, queue card sets specified by
+            // the data-sets attribute.
             var triggers = [
+                ['input.sickbrew_autocomplete', 'autocomplete'],
                 ['ul.sickbrew_sealed', 'sealed']
             ];
             for (var i = 0; i < triggers.length; i++) {
-                if ($(triggers[i][0]).length) {
+                var els = $(triggers[i][0]);
+                if (els.length) {
                     this.script(triggers[i][1]);
                 }
+                els.each((function(j, el) {
+                    this.queueSets($(el).data('sets'));
+                }).bind(this));
             }
-            // Enumerate card sets to load.
-            var sets = [];
+            // Queue card sets specified by hidden inputs (not preferred).
             $('input[name=sickbrew_cards]').each((function(i, el) {
-                var vals = el.value.split(',');
-                for (var i = 0; i < vals.length; i++) {
-                    if (this.loading.indexOf(vals[i]) == -1) {
-                        this.loading.push(vals[i]);
-                    }
-                    if (sets.indexOf(vals[i]) == -1) {
-                        sets.push(vals[i]);
-                    }
-                }
+                this.queueSets($(el).val());
             }).bind(this));
-            // Load card sets.
-            for (var i = 0; i < sets.length; i++) {
-                this.script('cards/' + sets[i]);
-            }
+            // Load queued card sets.
+            this.loadSets();
         }).bind(this));
     };
+    SickBrew.prototype.queueSets = function(sets) {
+        // Accepts a comma-separated string of card set abbreviations and adds
+        // them to the loading queue.
+        if (!sets) {
+            return;
+        }
+        var vals = sets.split(',');
+        for (var i = 0; i < vals.length; i++) {
+            if (this.loading.indexOf(vals[i]) == -1) {
+                this.loading.push(vals[i]);
+            }
+        }
+    };
+    SickBrew.prototype.loadSets = function() {
+        // Adds a script element that loads card data for each set in the
+        // loading queue.
+        var sets = this.loading.slice(0);
+        for (var i = 0; i < sets.length; i++) {
+            this.script('cards/' + sets[i]);
+        }
+    };
     SickBrew.prototype.onSetLoad = function(set) {
-        // Fires when a set's script loader completes or fails. Removes the set
-        // from the list of loading sets and calls card listeners if no more
-        // sets are pending.
+        // Fires when a set's script loader completes. Removes the set from the
+        // list of loading sets and calls card listeners if no more sets are
+        // pending.
         var i = this.loading.indexOf(set);
         if (i != -1) {
             this.loading.splice(i, 1);
