@@ -190,4 +190,5 @@ table.SickBrewBuilder tr.sbbCredit td a {
 img.sbbPreview {
     display:none;
     position:absolute;
+    z-index:123;
 }
