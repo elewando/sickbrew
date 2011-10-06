@@ -127,7 +127,7 @@ sickbrew.onCardsReady(function() {
         this.el.setAttribute('class', 'sbbPreview');
         // Since the Builder creates a Preview in the middle of its
         // createElements, the node property does not exist yet.
-        $(this.findBuilder().el).before(this.el);
+        $('body').prepend(this.el);
     };
     Preview.prototype.show = function(card) {
         this.el.src = card.img.src;
