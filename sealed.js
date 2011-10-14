@@ -485,24 +485,22 @@ sickbrew.onCardsReady(function() {
         }
     };
     Header.prototype.buildList = function(cards, label) {
-        var list = [];
+        var counts = {};
+        var names = [];
         var card = null;
-        var working = null;
-        var count = 0;
         while (card = cards.shift()) {
-            if (card == working) {
-                count += 1;
+            if (names.indexOf(card) == -1) {
+                names.push(card)
+                counts[card] = 1;
             }
             else {
-                if (working) {
-                    list.push(count + ' ' + working);
-                }
-                count = 1;
-                working = card;
+                counts[card] += 1;
             }
         }
-        if (count) {
-            list.push(count + ' ' + working);
+        var list = [];
+        var name = null;
+        while (name = names.shift()) {
+            list.push(counts[name] + ' ' + name);
         }
         return list.length ? label + '\n' + list.join('\n') + '\n\n' : '';
     };
