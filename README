@@ -43,13 +43,23 @@ into ignoring its cached copy of any files.
 Card Data
 ---------------------------------------------------------------------------
 
-To make card data available, include a hidden input:
+There are two ways to make card data available. The "old" way is to include
+a hidden input tag:
 
 <input type="hidden" name="sickbrew_cards" value="som,mbs,nph" />
 
-This example will make Scars of Mirrodin, Mirrodin Beseiged, and New
-Phyrexia card data available in window.sickbrew.cards. Most other sickbrew
-features will depend on this data.
+The "new" way is to include a data-sets attribute on the trigger element
+(for example, on the ul tag that triggers a sealed builder):
+
+<ul class="sickbrew_sealed" data-sets="som,mbs,nph">
+...
+</ul>
+
+If your site's content system supports it, prefer the data-sets attribute.
+
+Both ways would make Scars of Mirrodin, Mirrodin Beseiged, and New Phyrexia
+card data available in window.sickbrew.cards. Most other sickbrew features
+will depend on this data.
 
 ---------------------------------------------------------------------------
 Sealed Deck
@@ -58,7 +68,7 @@ Sealed Deck
 The Sealed Deck feature appends a deck builder to the page when it finds an
 appropriate card pool. Card pool html looks like this:
 
-<ul class="sickbrew_sealed">
+<ul class="sickbrew_sealed" data-sets="som,mbs,nph">
 <li>2 Apostle's Blessing</li>
 <li>Exclusion Ritual</li>
 etc
